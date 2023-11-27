@@ -1,0 +1,16 @@
+0. 모종의 이유로 프로젝트 다시 팔 때 해야 하는 것들
+   - 혹시 모종의 이유로 프로젝트 다시 파야 되면 https://jongsky.tistory.com/21 보면서 conda 설치
+   - 생성된 가상환경에서 아래 명령어 입력
+   - pip3 install pandas nltk shifterator scikit-learn openai
+   - conda install -n base ipykernel --update-deps --force-reinstall
+
+1. 코드 실행하기 전에 가상환경 확인(conda info --env)하고 시작하기
+   - 앨리스 기본 버전이 3.10인데 3.10 이상에서 오류 나는 코드들이 있음
+   - source ~/anaconda3/etc/profile.d/conda.sh && conda activate base
+   - Jupyter Notebook에서 오른쪽 위(Select kernel)에서 실행 환경 (base)로 저장해둬야 할 듯
+
+2. 누가 제발 seperate.csv 정체 좀 찾아봐줘...ㅠㅠ
+   >> 이거 예전 논문에서 사람 대상으로 조사한 데이터라서 거기서 파일 다운받고 이름 seperate.csv로 고친 다음에 keyError 고침
+
+3. API 키 강현이 꺼 일단 넣어놨는데 persona_generation_scripts에 있는 파일들은 돌리면 요청 많아서 강현이 계정 막힐 수도 있으니
+   물어보고 돌려야 할 듯, 그 외의 ipynb 파일은 돌려도 괜찮음!
