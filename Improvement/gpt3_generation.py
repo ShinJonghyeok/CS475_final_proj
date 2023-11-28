@@ -2,7 +2,7 @@ from clovax import ClovaX
 import time
 
 
-class GenerationClovaX():
+class GenerationGPT3():
     def __init__(self):
         self.model = ClovaX()
         self.model.get_cookie("../../Downloads/clova-x.naver.com_cookies.txt")
@@ -25,7 +25,7 @@ if __name__ == "__main__":
             '{province} {gender}를 상상해 보세요. 당신을 묘사해보세요.'
             ]
     
-    c = GenerationClovaX()
+    c = GenerationGPT3()
         
     for gender in genders:
         print(f">>> gender : {gender}")
@@ -38,7 +38,7 @@ if __name__ == "__main__":
                 for i in range(15):
                     try:
                         text = c(prompt)
-                        with open(f"./data/clovax_generations/{gender}_{province}_prompt{prompt_num}_{i}.txt", "w") as f:
+                        with open(f"./data/gpt3_generations/{gender}_{province}_prompt{prompt_num}_{i}.txt", "w") as f:
                             f.write(text)
                         print(f"\t\t\t>>> SUCCESS :", gender, province, prompt_num, i)
                     except Exception as e:
