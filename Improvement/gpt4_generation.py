@@ -3,18 +3,18 @@ import time
 import os
 
 
-class GenerationGPT3():
+class GenerationGPT4():
     def __init__(self):
         self.client = OpenAI()
 
     def __call__(self, prompt):
         response = self.client.chat.completions.create(
-            model='gpt-3.5-turbo',
+            model='gpt-4-1106-preview',
             messages=[
                 {"role": "user", "content": prompt}
             ],
             temperature=1,
-            max_tokens=256,
+            max_tokens=512,
             n=15,
             top_p=1,
             presence_penalty=0
@@ -35,7 +35,7 @@ if __name__ == "__main__":
         '{province} {gender}를 상상해 보세요. 당신을 묘사해보세요.'
     ]
 
-    c = GenerationGPT3()
+    c = GenerationGPT4()
 
     for gender in genders:
         print(f">>> gender : {gender}")
@@ -46,18 +46,18 @@ if __name__ == "__main__":
                 prompt = prompts[prompt_num].format(
                     province=province, gender=gender)
                 print(f"\t\t>>> {prompt}")
-                if os.path.exists(f"./data/gpt3_generations/{gender}_{province}_prompt{prompt_num}_14.txt"):
+                if os.path.exists(f"./data/gpt4_generations/{gender}_{province}_prompt{prompt_num}_14.txt"):
                     continue
                 responses = c(prompt)
                 for i in range(15):
                     try:
                         # if file already exists, skip
-                        file_name = f"./data/gpt3_generations/{gender}_{province}_prompt{prompt_num}_{i}.txt"
+                        file_name = f"./data/gpt4_generations/{gender}_{province}_prompt{prompt_num}_{i}.txt"
                         if os.path.exists(file_name):
                             print(
                                 f"File {file_name} already exists. Skipping.")
                             continue
-                        with open(f"./data/gpt3_generations/{gender}_{province}_prompt{prompt_num}_{i}.txt", "w") as f:
+                        with open(f"./data/gpt4_generations/{gender}_{province}_prompt{prompt_num}_{i}.txt", "w") as f:
                             f.write(responses[i].message.content)
                         print(f"\t\t\t>>> SUCCESS :", gender,
                               province, prompt_num, i)
