@@ -14,8 +14,8 @@ class GenerationGPT3():
                 {"role": "user", "content": prompt}
             ],
             temperature=1,
-            max_tokens=256,
-            n=15,
+            max_tokens=2048,
+            n=10,
             top_p=1,
             presence_penalty=0
         )
@@ -23,7 +23,7 @@ class GenerationGPT3():
 
 
 if __name__ == "__main__":
-    os.environ["OPENAI_API_KEY"] = "???"
+    os.environ["OPENAI_API_KEY"] = "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"
     genders = ["남자", "여자"]
     provinces = ["서울", "경상도", "전라도", "제주도"]
     prompts = [
@@ -46,10 +46,10 @@ if __name__ == "__main__":
                 prompt = prompts[prompt_num].format(
                     province=province, gender=gender)
                 print(f"\t\t>>> {prompt}")
-                if os.path.exists(f"./data/gpt3_generations/{gender}_{province}_prompt{prompt_num}_14.txt"):
+                if os.path.exists(f"./data/gpt3_generations/{gender}_{province}_prompt{prompt_num}_9.txt"):
                     continue
                 responses = c(prompt)
-                for i in range(15):
+                for i in range(10):
                     try:
                         # if file already exists, skip
                         file_name = f"./data/gpt3_generations/{gender}_{province}_prompt{prompt_num}_{i}.txt"
