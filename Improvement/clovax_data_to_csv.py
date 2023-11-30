@@ -2,7 +2,7 @@ import argparse
 import os
 import pandas as pd
 
-def main():
+def text_to_df():
     df = pd.read_csv("./data/clovax_generations.csv")
      
     texts = []
@@ -23,6 +23,7 @@ def main():
     assert len(texts) == len(df)
     df['text'] = texts
     df.to_csv("./data/clovax_generations.csv")
+    df.to_excel("./data/clovax_generations.xlsx")
             
             
 def excel_to_txt():
@@ -49,5 +50,5 @@ def excel_to_txt():
             
 
 if __name__ == "__main__":
-    #excel_to_txt()
+    text_to_df()
     pass

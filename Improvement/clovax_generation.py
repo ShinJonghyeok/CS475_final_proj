@@ -70,7 +70,7 @@ def generate_text():
             break
         prompt = row['prompt']
         #cookie = f"../../cookies/{row['account']}_clova-x.naver.com_cookies.txt"
-        cookie = "../../Downloads/clova-x.naver.com_cookies (3).txt"
+        cookie = "../../Downloads/clova-x.naver.com_cookies (4).txt"
         
         gender, province, prompt_num, i = row['gender'], row['province'], row['prompt_num'], row['iteration']
         print(gender, province, prompt_num, i, end=" ")
