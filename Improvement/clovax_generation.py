@@ -63,10 +63,10 @@ def generate_text():
     df = pd.read_csv("./data/clovax_generations.csv")
     c = GenerationClovaX()
      
-    for _, row in df[210:210+30].iterrows():
+    for _, row in df[130:130+30].iterrows():
         prompt = row['prompt']
-        cookie = f"../../cookies/{row['account']}_clova-x.naver.com_cookies.txt"
-        print(cookie)
+        #cookie = f"../../cookies/{row['account']}_clova-x.naver.com_cookies.txt"
+        cookie = f"../../cookies/sw_clova-x.naver.com_cookies.txt"
         
         gender, province, prompt_num, i = row['gender'], row['province'], row['prompt_num'], row['iteration']
         print(gender, province, prompt_num, i, end=" ")
