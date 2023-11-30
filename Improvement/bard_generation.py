@@ -1,23 +1,22 @@
 from bardapi import BardCookies
-from openai import OpenAI
-import time
 import os
 
 
 class Bard():
     def __init__(self):
-        self.client = OpenAI()
-        self.cookie_dict = {
-            "__Secure-1PSID": "cwj--lbF2jrFJGVKu1obAhxj2aS3Ou6yDOvBivaou1G2ZqZoH3z9NgeKVDIYZfAtRLNxOA.",
-            "__Secure-1PSIDTS": "sidts-CjIBNiGH7k71f9cs2KZB1SCpv3fHoJmrvF3J9i4Xm5FuP6TUeayGFWImcBdKmN36Umv43xAA",
-            "__Secure-1PSIDCC": "ACA-OxNLpoTJdk2261FAGrBfPxdwPGV9EXYvXWY7-oBCr-ghysuQ0i2a0f1CPdAxk7c7pwf6Ig"
-        }
+        with open("../../Downloads/bard.google.com_cookies (3).txt", "r") as f:
+            cookie = f.read().split()
+            
+            cookie_dict = dict()
+            for i, k in enumerate(cookie):
+                if k == "__Secure-1PSID" or k == "__Secure-1PSIDTS" or k == "__Secure-1PSIDCC":
+                    cookie_dict[k] = cookie[i+1]
+                    
+        self.model = BardCookies(cookie_dict=cookie_dict)
 
     def __call__(self, prompt):
-        
-        bard = BardCookies(cookie_dict=self.cookie_dict)
-        results = bard.get_answer(prompt)
-        return results['choices']['content'][0]
+        results = self.model.get_answer(prompt)
+        return [result['content'][0] for result in results['choices']]
 
 
 if __name__ == "__main__":
@@ -37,21 +36,25 @@ if __name__ == "__main__":
     for gender in genders:
         for province in provinces:    
             for prompt_num in range(6):        
-                for i in range(10):
-                    print(f"{gender}_{province}_prompt{prompt_num}_{i}", end=" ")
-                    file_name = f"./data/gpt4_generations/{gender}_{province}_prompt{prompt_num}_{i}.txt"
+                for i in range(3):
+                    print(f"{gender}_{province}_prompt{prompt_num}_{3*i}", end=" ")
+                    file_name = f"./data/bard_generations/{gender}_{province}_prompt{prompt_num}_{3*i}.txt"
                     if os.path.exists(file_name):
                             print(f">>> ALREADY EXISTS")
                             continue
                     
-                    prompt = prompts[prompt_num].format(province=province, gender=gender)
                     try:
-                        # if file already exists, skip
-                        text = c(prompt)
-                        with open(f"./data/gpt4_generations/{gender}_{province}_prompt{prompt_num}_{i}.txt", "w") as f:
-                            f.write(text)
-                        print(f">>> SUCCESS")
+                        prompt = prompts[prompt_num].format(province=province, gender=gender)
+                        texts = c(prompt)
                     except Exception as e:
                         print(f">>> ERROR : ", e)
+                    
+                    else:
+                        for j, text in enumerate(texts):    
+                            with open(f"./data/bard_generations/{gender}_{province}_prompt{prompt_num}_{3*i + j}.txt", "w") as f:
+                                f.write(text)
+                                print(f">>> SUCCESS", end=" ")
+                        print()
+                        
 
 

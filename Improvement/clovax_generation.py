@@ -50,7 +50,7 @@ def generate_csv_frame():
     
 def add_account_column():
     df = pd.read_csv("./data/clovax_generations.csv")
-    account_list = ['haechan', 'mom', 'aunt', 'jinyoung', 'dongwoo', 'kimin']
+    account_list = ['haechan', 'mom', 'aunt', 'jinyoung', 'haechan2', 'sw']
     account = []
     for i in range(len(df)):
         account.append(account_list[(i % 180) // 30])
@@ -63,10 +63,14 @@ def generate_text():
     df = pd.read_csv("./data/clovax_generations.csv")
     c = GenerationClovaX()
      
-    for _, row in df[160:130+30].iterrows():
+    count = 0
+    for _, row in df.iterrows():
+        if count == 30:
+            print("======== count 30 ========")
+            break
         prompt = row['prompt']
         #cookie = f"../../cookies/{row['account']}_clova-x.naver.com_cookies.txt"
-        cookie = f"../../cookies/haechan2_clova-x.naver.com_cookies.txt"
+        cookie = "../../Downloads/clova-x.naver.com_cookies (3).txt"
         
         gender, province, prompt_num, i = row['gender'], row['province'], row['prompt_num'], row['iteration']
         print(gender, province, prompt_num, i, end=" ")
@@ -77,6 +81,7 @@ def generate_text():
         
         try:
             text = c(prompt, cookie)
+            count += 1
             print(f">>> SUCCESS")
         
         except Exception as e:
@@ -89,5 +94,3 @@ def generate_text():
         
 if __name__ == "__main__":
     generate_text()
-
-
