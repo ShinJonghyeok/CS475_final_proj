@@ -4,7 +4,7 @@ import os
 
 class Bard():
     def __init__(self):
-        with open("../../Downloads/bard.google.com_cookies (3).txt", "r") as f:
+        with open("../../Downloads/bard.google.com_cookies (5).txt", "r") as f:
             cookie = f.read().split()
             
             cookie_dict = dict()
@@ -16,7 +16,7 @@ class Bard():
 
     def __call__(self, prompt):
         results = self.model.get_answer(prompt)
-        return [result['content'][0] for result in results['choices']]
+        return [result['content'][0] for result in results['choices']][0]
 
 
 if __name__ == "__main__":
@@ -36,24 +36,24 @@ if __name__ == "__main__":
     for gender in genders:
         for province in provinces:    
             for prompt_num in range(6):        
-                for i in range(3):
-                    print(f"{gender}_{province}_prompt{prompt_num}_{3*i}", end=" ")
-                    file_name = f"./data/bard_generations/{gender}_{province}_prompt{prompt_num}_{3*i}.txt"
+                for i in range(10):
+                    print(f"{gender}_{province}_prompt{prompt_num}_{i}", end=" ")
+                    file_name = f"./data/bard_generations/{gender}_{province}_prompt{prompt_num}_{i}.txt"
                     if os.path.exists(file_name):
                             print(f">>> ALREADY EXISTS")
                             continue
                     
                     try:
                         prompt = prompts[prompt_num].format(province=province, gender=gender)
-                        texts = c(prompt)
+                        text = c(prompt)
                     except Exception as e:
                         print(f">>> ERROR : ", e)
                     
                     else:
-                        for j, text in enumerate(texts):    
-                            with open(f"./data/bard_generations/{gender}_{province}_prompt{prompt_num}_{3*i + j}.txt", "w") as f:
-                                f.write(text)
-                                print(f">>> SUCCESS", end=" ")
+                        #for j, text in enumerate(texts):    
+                        with open(f"./data/bard_generations/{gender}_{province}_prompt{prompt_num}_{i}.txt", "w") as f:
+                            f.write(text)
+                            print(f">>> SUCCESS", end=" ")
                         print()
                         
 

@@ -65,12 +65,12 @@ def generate_text():
      
     count = 0
     for _, row in df.iterrows():
-        if count == 30:
-            print("======== count 30 ========")
-            break
+        # if count == 30:
+        #     print("======== count 30 ========")
+        #     break
         prompt = row['prompt']
         #cookie = f"../../cookies/{row['account']}_clova-x.naver.com_cookies.txt"
-        cookie = "../../Downloads/clova-x.naver.com_cookies (4).txt"
+        cookie = "../../Downloads/clova-x.naver.com_cookies (6).txt"
         
         gender, province, prompt_num, i = row['gender'], row['province'], row['prompt_num'], row['iteration']
         print(gender, province, prompt_num, i, end=" ")
