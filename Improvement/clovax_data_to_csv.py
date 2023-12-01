@@ -16,14 +16,14 @@ def text_to_df():
                 text = f.read()
     
         else:
-            text = " "
+            print("There is NO file, something goes wrong.")
+            assert 0
         
         texts.append(text)
     
     assert len(texts) == len(df)
     df['text'] = texts
     df.to_csv("./data/clovax_generations.csv")
-    df.to_excel("./data/clovax_generations.xlsx")
             
             
 def excel_to_txt():
