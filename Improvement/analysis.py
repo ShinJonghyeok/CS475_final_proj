@@ -76,5 +76,8 @@ def word_count():
     
 if __name__ == "__main__":
     #print_count()
-    word_dup()
+    #word_dup()
     #word_count()
+    with open("./result.p", 'rb') as f:
+        data = pickle.load(f)
+    print(data['Bard']['남자'])

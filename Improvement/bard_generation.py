@@ -2,24 +2,23 @@ from bardapi import BardCookies
 import os
 
 
-class Bard():
-    def __init__(self):
-        with open("../../Downloads/bard.google.com_cookies (5).txt", "r") as f:
-            cookie = f.read().split()
+# class Bard():
+#     def __init__(self):
+#         with open("../../Downloads/bard.google.com_cookies (5).txt", "r") as f:
+#             cookie = f.read().split()
             
-            cookie_dict = dict()
-            for i, k in enumerate(cookie):
-                if k == "__Secure-1PSID" or k == "__Secure-1PSIDTS" or k == "__Secure-1PSIDCC":
-                    cookie_dict[k] = cookie[i+1]
+#             cookie_dict = dict()
+#             for i, k in enumerate(cookie):
+#                 if k == "__Secure-1PSID" or k == "__Secure-1PSIDTS" or k == "__Secure-1PSIDCC":
+#                     cookie_dict[k] = cookie[i+1]
                     
-        self.model = BardCookies(cookie_dict=cookie_dict)
+#         self.model = BardCookies(cookie_dict=cookie_dict)
 
-    def __call__(self, prompt):
-        results = self.model.get_answer(prompt)
-        return [result['content'][0] for result in results['choices']][0]
+#     def __call__(self, prompt):
+#         results = self.model.get_answer(prompt)
+#         return [result['content'][0] for result in results['choices']][0]
 
-
-if __name__ == "__main__":
+def main():
     genders = ["남자", "여자"]
     provinces = ["서울", "경상도", "전라도", "제주도"]
     prompts = [
@@ -57,4 +56,21 @@ if __name__ == "__main__":
                         print()
                         
 
+if __name__ == "__main__":
+    from bardapi import Bard, SESSION_HEADERS, BardCookies
+    import os
+    import requests
 
+    with open("../../Downloads/bard.google.com_cookies (7).txt", "r") as f:
+        cookie = f.read().split()
+        cookie_dict = dict()
+        for i, k in enumerate(cookie):
+            if k == "__Secure-1PSID" or k == "__Secure-1PSIDTS" or k == "__Secure-1PSIDCC":
+                cookie_dict[k] = cookie[i+1]
+    
+    from bardapi import ChatBard
+
+    for i in range(20):
+        print(cookie_dict["__Secure-1PSID"])
+        chat = ChatBard()
+        chat.start(prompt="경상도 남자에 대해 소개해줘. ")
