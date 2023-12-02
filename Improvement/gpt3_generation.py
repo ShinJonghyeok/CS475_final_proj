@@ -46,18 +46,18 @@ if __name__ == "__main__":
                 prompt = prompts[prompt_num].format(
                     province=province, gender=gender)
                 print(f"\t\t>>> {prompt}")
-                if os.path.exists(f"./data/gpt3_generations/{gender}_{province}_prompt{prompt_num}_9.txt"):
+                if os.path.exists(f"./data_2/gpt3_generations/{gender}_{province}_prompt{prompt_num}_9.txt"):
                     continue
                 responses = c(prompt)
                 for i in range(10):
                     try:
                         # if file already exists, skip
-                        file_name = f"./data/gpt3_generations/{gender}_{province}_prompt{prompt_num}_{i}.txt"
+                        file_name = f"./data_2/gpt3_generations/{gender}_{province}_prompt{prompt_num}_{i}.txt"
                         if os.path.exists(file_name):
                             print(
                                 f"File {file_name} already exists. Skipping.")
                             continue
-                        with open(f"./data/gpt3_generations/{gender}_{province}_prompt{prompt_num}_{i}.txt", "w") as f:
+                        with open(f"./data_2/gpt3_generations/{gender}_{province}_prompt{prompt_num}_{i}.txt", "w") as f:
                             f.write(responses[i].message.content)
                         print(f"\t\t\t>>> SUCCESS :", gender,
                               province, prompt_num, i)

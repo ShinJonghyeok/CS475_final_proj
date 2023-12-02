@@ -23,7 +23,7 @@ class GenerationGPT4():
 
 
 if __name__ == "__main__":
-    os.environ["OPENAI_API_KEY"] = "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"
+    os.environ["OPENAI_API_KEY"] = "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"
     genders = ["남자", "여자"]
     provinces = ["서울", "경상도", "전라도", "제주도"]
     prompts = [
@@ -46,18 +46,18 @@ if __name__ == "__main__":
                 prompt = prompts[prompt_num].format(
                     province=province, gender=gender)
                 print(f"\t\t>>> {prompt}")
-                if os.path.exists(f"./data/gpt4_generations/{gender}_{province}_prompt{prompt_num}_9.txt"):
+                if os.path.exists(f"./data_2/gpt4_generations/{gender}_{province}_prompt{prompt_num}_9.txt"):
                     continue
                 responses = c(prompt)
                 for i in range(10):
                     try:
                         # if file already exists, skip
-                        file_name = f"./data/gpt4_generations/{gender}_{province}_prompt{prompt_num}_{i}.txt"
+                        file_name = f"./data_2/gpt4_generations/{gender}_{province}_prompt{prompt_num}_{i}.txt"
                         if os.path.exists(file_name):
                             print(
                                 f"File {file_name} already exists. Skipping.")
                             continue
-                        with open(f"./data/gpt4_generations/{gender}_{province}_prompt{prompt_num}_{i}.txt", "w") as f:
+                        with open(f"./data_2/gpt4_generations/{gender}_{province}_prompt{prompt_num}_{i}.txt", "w") as f:
                             f.write(responses[i].message.content)
                         print(f"\t\t\t>>> SUCCESS :", gender,
                               province, prompt_num, i)

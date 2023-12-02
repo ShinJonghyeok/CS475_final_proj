@@ -42,7 +42,7 @@ def main(args):
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--data", default="./data/gpt3_generations/")
+parser.add_argument("--data", default="./data_2/gpt3_generations/")
 args = parser.parse_args()
 
 main(args)
