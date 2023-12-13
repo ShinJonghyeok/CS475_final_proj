@@ -14,6 +14,8 @@ find that the results match another measure of knowledge of Korea, the Korean na
 ## Results
 This is the qualitative result presented in our paper. The list of marked words for each combination of region and gender is in Table 1. Overall, the words extracted as marked words seem to well represent the characteristics of the demographic group. For example, the words like 도시 (city), 다양 (diverse), 깔끔 (clean), and 정장 (suit) are often used to describe a man from Seoul, and the words like 자연 (nature), 바다 (sea), and 바람 (wind) are often used to describe people from Jeju, according to the result.
 ![Table 1](images/table1.png)
+<img src="images/table1.png", width="500" height="300">
+
 
 These are the quantitative results presented in our paper. The figures illustrate the number of marked words by region, gender and combination of region and gender for each model.
 
