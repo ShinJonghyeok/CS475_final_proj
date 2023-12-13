@@ -12,10 +12,13 @@ import argparse
 from collections import defaultdict
 import math
 import sys
-from konlpy.tag import Mecab
+from konlpy.tag import Kkma, Mecab
 
-mecab = Mecab()
+kkma, mecab = Kkma(), Mecab()
+TAGS = ['NNG', 'NNP', 'VV', 'VA', 'VX', 'MM', 'MAG', 'XR']
 
+def preprocess(s):
+    return " ".join(list(map(lambda p: p[0], filter(lambda x: x[1].split("+")[0] in TAGS, mecab.pos(s)))))
 
 def get_log_odds(df1, df2, df0, verbose=False, lower=True):
     """Monroe et al. Fightin' Words method to identify top words in df1 and df2
@@ -24,7 +27,7 @@ def get_log_odds(df1, df2, df0, verbose=False, lower=True):
         int,
         [
             [i, j]
-            for i, j in df1.apply(lambda s: " ".join(mecab.morphs(s)))
+            for i, j in df1.apply(preprocess)
             .str.lower()
             .str.split(expand=True)
             .stack()
@@ -37,7 +40,7 @@ def get_log_odds(df1, df2, df0, verbose=False, lower=True):
         int,
         [
             [i, j]
-            for i, j in df2.apply(lambda s: " ".join(mecab.morphs(s)))
+            for i, j in df2.apply(preprocess)
             .str.lower()
             .str.split(expand=True)
             .stack()
@@ -50,7 +53,7 @@ def get_log_odds(df1, df2, df0, verbose=False, lower=True):
         int,
         [
             [i, j]
-            for i, j in df0.apply(lambda s: " ".join(mecab.morphs(s)))
+            for i, j in df0.apply(preprocess)
             .str.lower()
             .str.split(expand=True)
             .stack()
@@ -105,7 +108,7 @@ def get_log_odds(df1, df2, df0, verbose=False, lower=True):
     return delta
 
 
-def marked_words(df, target_val, target_col, unmarked_val, threshold=1.96, verbose=False):
+def marked_words(df, target_val, target_col, unmarked_val, corpus=None, threshold=1.96, verbose=False):
 
     """Get words that distinguish the target group (which is defined as having
     target_group_vals in the target_group_cols column of the dataframe)
@@ -115,6 +118,9 @@ def marked_words(df, target_val, target_col, unmarked_val, threshold=1.96, verbo
     grams = dict()
     thr = threshold  # z-score threshold
 
+    if corpus is None:
+        corpus = df
+
     subdf = df.copy()
 
     for i in range(len(target_val)):
@@ -123,8 +129,8 @@ def marked_words(df, target_val, target_col, unmarked_val, threshold=1.96, verbo
     for i in range(len(unmarked_val)):
         delt = get_log_odds(
             subdf["text"],
-            df.loc[df[target_col[i]] == unmarked_val[i]]["text"],
-            df["text"],
+            df["text"],  # df.loc[df[target_col[i]] == unmarked_val[i]]["text"],
+            corpus["text"],
             verbose,
         )  # first one is the positive-valued one
         c1 = []
