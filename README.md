@@ -48,20 +48,26 @@ Here are the 6 prompts we used with different combinations of region and gender.
 
 
 ## Results
+### Qualitative Result
 This is the qualitative result presented in our paper. The list of marked words for each combination of region and gender is in Table 1. Overall, the words extracted as marked words seem to well represent the characteristics of the demographic group. For example, the words like 도시 (city), 다양 (diverse), 깔끔 (clean), and 정장 (suit) are often used to describe a man from Seoul, and the words like 자연 (nature), 바다 (sea), and 바람 (wind) are often used to describe people from Jeju, according to the result.
 
 <p align="center">
   <img src="images/table1.png" width="50%" alt="Table 1">
 </p>
 
-
+### Quantitative Result
 These are the quantitative results presented in our paper. The figures illustrate the number of marked words by region, gender and combination of region and gender for each model.
 
 <p align="center">
   <img src="images/figure.png" width="90%" alt="Figure">
 </p>
 
+## Discussions
+### Correlation between Knowledge and Bias
+Unlike the number of marked words for the region category (Figure 1), only few words have been selected as marked words by gender (Figure 2). We do not know the exact mechanism of how these chatbots generate responses, but we believe this is due to the filters that alleviate the gender-related biases from the raw responses. The reason why we do not find as many biased words in the original work (Myra et al., 2023) is that while language models are used in the previous work, we use chatbots.
 
+### Positive Correlation with Baseline
+For the 4 chatbots we used in the experiment, there was a positive correlation between the result for the accuracy of naturalization test(it present in our paper) and the number of marked words(Figure 3). Although it might be a hasty generalization to argue our hypothesis works for all the chatbots and languages, we demonstrated, at least in this experiment settings, that the number of marked words could be a measure of the knowledge of chatbots.
 
 ### Libraries
 - https://konlpy.org/en/latest/
