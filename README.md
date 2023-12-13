@@ -49,9 +49,9 @@ Here are the 6 prompts we used with different combinations of region and gender.
 
 ## Results
 This is the qualitative result presented in our paper. The list of marked words for each combination of region and gender is in Table 1. Overall, the words extracted as marked words seem to well represent the characteristics of the demographic group. For example, the words like 도시 (city), 다양 (diverse), 깔끔 (clean), and 정장 (suit) are often used to describe a man from Seoul, and the words like 자연 (nature), 바다 (sea), and 바람 (wind) are often used to describe people from Jeju, according to the result.
-![Table 1](images/table1.png){: width="50%" height="50%"}
+
 <p align="center">
-  <img src="images/table1.png" width="50%" alt="예시 이미지">
+  <img src="images/table1.png" width="50%" alt="Table 1">
 </p>
 
 
@@ -61,6 +61,13 @@ These are the quantitative results presented in our paper. The figures illustrat
 ![Figure 1](images/figure1.png)
 ![Figure 2](images/figure2.png)
 ![Figure 3](images/figure3.png)
+
+<p align="center">
+  <img src="images/figure1.png" width="30%" alt="Figure 1">
+  <img src="images/figure2.png" width="30%" alt="Figure 2">
+  <img src="images/figure3.png" width="30%" alt="Figure 3">
+</p>
+
 
 
 ### Libraries
