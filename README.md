@@ -58,9 +58,7 @@ This is the qualitative result presented in our paper. The list of marked words 
 These are the quantitative results presented in our paper. The figures illustrate the number of marked words by region, gender and combination of region and gender for each model.
 
 <p align="center">
-  <img src="images/figure1.png" width="30%" alt="Figure 1">
-  <img src="images/figure2.png" width="30%" alt="Figure 2">
-  <img src="images/figure3.png" width="30%" alt="Figure 3">
+  <img src="images/figure.png" width="90%" alt="Figure">
 </p>
 
 
