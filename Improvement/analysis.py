@@ -10,7 +10,7 @@ def print_count():
         data = pickle.load(f)
         
     models = ['gpt-3.5-turbo', 'gpt-4-1106-preview', 'CLOVA X', 'Bard']
-    groups = ['서울 남자', '서울 여자', '경상도 남자', '경상도 여자', '전라도 남자', '전라도 여자', '제주도 남자', '제주도 여자']
+    groups = ['남자', '여자', '서울', '경상도', '전라도', '제주도', '서울 남자', '서울 여자', '경상도 남자', '경상도 여자', '전라도 남자', '전라도 여자', '제주도 남자', '제주도 여자']
 
     for model in models:
         print(">>> ", model)
@@ -47,11 +47,17 @@ def word_dup():
     for group, words in result.items():
         result[group] = {k : v for (k, v) in sorted(words.items(), key = lambda item: len(item[1]), reverse=True)}
         
-    # printing
+    #printing
     for group, words in result.items():
         print(">>> ", group)
         for word, models in words.items():
-            print("\t>>> ", word, ": ", models)
+            print("\t>>> ", word, ": ", len(models))
+            
+    for group, words in result.items():
+        print(">>> ", group)
+        for w in words.keys():
+            print(w, end=', ')
+        print()
 
     with open("./word.p", 'wb') as f:
         pickle.dump(result, f)
@@ -77,7 +83,8 @@ def word_count():
 if __name__ == "__main__":
     #print_count()
     #word_dup()
+    print_count()
     #word_count()
-    with open("./result.p", 'rb') as f:
-        data = pickle.load(f)
-    print(data['Bard']['남자'])
+    # with open("./result.p", 'rb') as f:
+    #     data = pickle.load(f)
+    # print(data['Bard']['남자'])
