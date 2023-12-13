@@ -1,4 +1,5 @@
 # What is the best LLM Chatbot in South Korea?
+This is the final project for Professor Alice Oh's course, CS475: Machine Learning for Natural Language Processing, in KAIST.
 Code release of our paper [paper](https://drive.google.com/file/d/1a4qkD8U658KFXHW9UsBmhWSzECakImrD/view?usp=sharing).
 
 ## Abstract
