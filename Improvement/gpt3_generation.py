@@ -23,7 +23,7 @@ class GenerationGPT3():
 
 
 if __name__ == "__main__":
-    os.environ["OPENAI_API_KEY"] = "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"
+    os.environ["OPENAI_API_KEY"] = "-"
     genders = ["남자", "여자"]
     provinces = ["서울", "경상도", "전라도", "제주도"]
     prompts = [

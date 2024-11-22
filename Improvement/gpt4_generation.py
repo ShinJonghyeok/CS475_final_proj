@@ -23,7 +23,7 @@ class GenerationGPT4():
 
 
 if __name__ == "__main__":
-    os.environ["OPENAI_API_KEY"] = "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"
+    os.environ["OPENAI_API_KEY"] = "-"
     genders = ["남자", "여자"]
     provinces = ["서울", "경상도", "전라도", "제주도"]
     prompts = [
